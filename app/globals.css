@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --background: #fafafa;
+  --surface: #ffffff;
+  --surface-2: #f3f4f6;
+  --surface-3: #e8eaed;
+  --foreground: #1a1a1a;
+  --muted: #3a3a3a;
+  --faint: #6b7280;
+  --border: #e5e5e5;
+  --primary: #2f8d46;
+  --primary-hover: #277a3c;
+  --primary-soft: #e7f5ea;
+  --on-primary: #ffffff;
+  --link: #1b6b34;
+  --easy: #2f8d46;
+  --easy-soft: #e7f5ea;
+  --medium: #b8860b;
+  --medium-soft: #fbf3dd;
+  --hard: #d9363e;
+  --hard-soft: #fceaea;
+  --nav-bg: #ffffff;
+  --code-bg: #0f1419;
+  --code-text: #e6edf3;
+  --header-line: #e5e5e5;
+  --toc-active: #f0f5f1;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-line: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-soft: var(--primary-soft);
+  --color-on-primary: var(--on-primary);
+  --color-link: var(--link);
+  --color-easy: var(--easy);
+  --color-easy-soft: var(--easy-soft);
+  --color-medium: var(--medium);
+  --color-medium-soft: var(--medium-soft);
+  --color-hard: var(--hard);
+  --color-hard-soft: var(--hard-soft);
+  --color-nav: var(--nav-bg);
+  --color-code: var(--code-bg);
+  --color-code-text: var(--code-text);
+  --color-header-line: var(--header-line);
+  --color-toc-active: var(--toc-active);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+}
+
+::selection {
+  background: color-mix(in srgb, var(--primary) 25%, transparent);
+}
+
+/* Slim scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Hide scrollbar for horizontal scrollers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Article typography */
+.article-body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+.article-body h2,
+.article-body h3 {
+  color: var(--foreground);
+  scroll-margin-top: 90px;
+  font-weight: 700;
+}
+.article-body h2 {
+  font-size: 1.375rem;
+  line-height: 1.4;
+  margin: 2rem 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+.article-body h3 {
+  font-size: 1.125rem;
+  line-height: 1.45;
+  margin: 1.75rem 0 0.6rem;
+}
+.article-body p {
+  margin: 0.9rem 0;
+}
+.article-body a {
+  color: var(--link);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--link) 35%, transparent);
+  text-underline-offset: 3px;
+}
+.article-body a:hover {
+  text-decoration-color: var(--link);
+}
+.article-body ul {
+  margin: 0.9rem 0;
+  padding-left: 1.35rem;
+  list-style: disc;
+}
+.article-body ol {
+  margin: 0.9rem 0;
+  padding-left: 1.35rem;
+  list-style: decimal;
+}
+.article-body li {
+  margin: 0.3rem 0;
+}
+.article-body strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+.article-body blockquote {
+  border-left: 3px solid var(--primary);
+  background: var(--surface-2);
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: var(--foreground);
+}
+.article-body img {
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .fade-in {
+    animation: none;
+  }
+}
